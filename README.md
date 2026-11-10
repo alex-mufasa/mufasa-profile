@@ -33,3 +33,4 @@ The API documentation says the current bridge version is v5, default rate limit 
 
 ## Data notes
 The visible stats are a manual snapshot from the player's Apex Legends Status screenshots. They are not live values until the API response is validated and mapped. Percentiles are provider-reported tracked-player percentiles, not official EA skill rankings.
+
