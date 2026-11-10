@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#09070f">
+  <meta name="description" content="MUFASA — Apex Legends player profile and Octane statistics.">
+  <title>MUFASA — Player Profile</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root{--bg:#09070f;--panel:#110d1b;--panel2:#171024;--violet:#a855f7;--violet2:#7c3aed;--pink:#e879f9;--text:#f5f0ff;--muted:#9b91aa;--line:rgba(190,140,255,.17);--glow:0 0 34px rgba(168,85,247,.18)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 78% 12%,rgba(124,58,237,.20),transparent 32%),radial-gradient(ellipse at 10% 55%,rgba(168,85,247,.09),transparent 34%),linear-gradient(130deg,#09070f,#0b0812 55%,#10091b)}
+    body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(1180px,calc(100% - 44px));margin:auto}
+    .topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:10}
+    .brand{font:900 27px 'Barlow Condensed',sans-serif;letter-spacing:.12em}.brand b{color:var(--violet)}
+    .nav{display:flex;gap:30px;color:#b8aec5;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.nav a{transition:.2s}.nav a:hover{color:var(--pink)}
+    .top-right{display:flex;align-items:center;gap:14px}.online{font-size:10px;color:#c8b7dc;letter-spacing:.14em}.dot{display:inline-block;width:7px;height:7px;background:#a3e635;border-radius:50%;box-shadow:0 0 12px #a3e635;margin-right:7px}
+    .edit-btn,.outline-btn{border:1px solid rgba(190,140,255,.35);background:rgba(168,85,247,.08);color:#e8d8ff;padding:11px 16px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;transition:.2s}.edit-btn:hover,.outline-btn:hover{background:rgba(168,85,247,.22);box-shadow:var(--glow);transform:translateY(-2px)}
+    .hero{min-height:610px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;position:relative;padding:70px 0 55px;isolation:isolate}
+    .hero-copy{position:relative;z-index:2}.eyebrow{color:var(--pink);font-size:10px;font-weight:800;letter-spacing:.28em;text-transform:uppercase;display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:34px;height:1px;background:var(--pink);box-shadow:0 0 12px var(--pink)}
+    h1{font:900 clamp(78px,12vw,154px)/.78 'Barlow Condensed',sans-serif;letter-spacing:-.025em;margin:28px 0 24px;text-transform:uppercase;text-shadow:0 0 40px rgba(168,85,247,.22)}
+    h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(220,190,255,.75);text-shadow:none}
+    .subtitle{font-size:12px;line-height:1.9;letter-spacing:.12em;color:#bcb2c9;text-transform:uppercase;max-width:440px}
+    .hero-actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.primary-btn{background:linear-gradient(110deg,#9333ea,#6d28d9);color:white;border:0;padding:15px 22px;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 8px 30px rgba(124,58,237,.25);transition:.2s}.primary-btn:hover{transform:translateY(-3px);box-shadow:0 12px 38px rgba(168,85,247,.4)}
+    .hero-art{height:480px;position:relative;display:grid;place-items:center;overflow:hidden}.orb{position:absolute;width:min(430px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(168,85,247,.25),rgba(124,58,237,.08) 42%,transparent 68%);filter:blur(2px);animation:pulse 5s ease-in-out infinite}
+    .ring{position:absolute;width:390px;height:390px;border:1px solid rgba(192,132,252,.38);border-radius:50%;transform:rotateX(68deg) rotateZ(-24deg);box-shadow:0 0 35px rgba(168,85,247,.13),inset 0 0 30px rgba(168,85,247,.08);animation:spin 24s linear infinite}
+    .ring.r2{width:310px;height:310px;transform:rotateX(68deg) rotateZ(48deg);border-color:rgba(232,121,249,.30);animation-direction:reverse;animation-duration:18s}
+    .core{position:relative;width:230px;height:300px;clip-path:polygon(50% 0,83% 13%,100% 48%,76% 100%,23% 100%,0 48%,17% 13%);background:linear-gradient(145deg,rgba(232,121,249,.48),rgba(76,29,149,.12) 36%,rgba(9,7,15,.94) 72%);border:1px solid rgba(216,180,254,.5);filter:drop-shadow(0 0 28px rgba(168,85,247,.45));display:grid;place-items:center}
+    .core:before{content:"M";font:900 190px 'Barlow Condensed',sans-serif;color:rgba(245,240,255,.08);text-shadow:0 0 30px rgba(216,180,254,.5)}
+    .core:after{content:"";position:absolute;inset:18px;border:1px solid rgba(216,180,254,.28);clip-path:inherit}
+    .art-label{position:absolute;bottom:26px;right:4px;font:700 10px 'Barlow Condensed',sans-serif;letter-spacing:.22em;color:#c4b5d8}
+    .art-label strong{color:var(--pink);font-size:18px;display:block;text-align:right}
+    .hero-grid{position:absolute;inset:0;z-index:-1;opacity:.22;background-image:linear-gradient(rgba(168,85,247,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.12) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,black 70%,transparent)}
+    .scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,121,249,.55),transparent);top:20%;animation:scan 7s linear infinite;opacity:.5}
+    .section{padding:76px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px;gap:20px}.kicker{font-size:10px;color:var(--pink);letter-spacing:.24em;font-weight:800;text-transform:uppercase}.section-title{font:800 clamp(36px,5vw,56px)/.95 'Barlow Condensed',sans-serif;margin:9px 0 0;text-transform:uppercase;letter-spacing:.02em}.section-note{font-size:11px;color:var(--muted);max-width:310px;line-height:1.7}
+    .profile-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.panel{background:linear-gradient(145deg,rgba(25,17,39,.94),rgba(13,10,20,.92));border:1px solid var(--line);position:relative;overflow:hidden}.panel:before{content:"";position:absolute;top:0;left:0;width:72px;height:2px;background:var(--pink);box-shadow:0 0 14px var(--pink)}
+    .player-card{padding:28px;min-height:245px}.player-top{display:flex;justify-content:space-between;align-items:start}.player-tag{font:800 12px 'Barlow Condensed',sans-serif;letter-spacing:.18em;color:#d8b4fe}.player-name{font:800 44px/.95 'Barlow Condensed',sans-serif;margin:14px 0 7px}.player-role{color:var(--muted);font-size:10px;letter-spacing:.16em;text-transform:uppercase}.rank-chip{border:1px solid rgba(216,180,254,.32);padding:8px 10px;color:#d8b4fe;font-size:9px;letter-spacing:.15em;text-transform:uppercase}
+    .player-bottom{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap}.mini-stat small{display:block;color:var(--muted);font-size:9px;letter-spacing:.16em;text-transform:uppercase}.mini-stat strong{display:block;font:700 24px 'Barlow Condensed',sans-serif;margin-top:5px}
+    .main-game{padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:245px;background:radial-gradient(circle at 90% 10%,rgba(124,58,237,.24),transparent 50%),linear-gradient(145deg,#1b1028,#0d0a14)}
+    .game-logo{font:900 34px/.9 'Barlow Condensed',sans-serif;letter-spacing:.06em}.game-logo span{color:var(--pink)}.game-meta{font-size:9px;color:#b7a9c7;letter-spacing:.2em;text-transform:uppercase;margin-top:8px}
+    .game-bottom{display:flex;justify-content:space-between;align-items:end}.legend{font:800 28px 'Barlow Condensed',sans-serif}.legend small{display:block;font:600 9px Manrope,sans-serif;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+    .status{font-size:9px;color:#d8b4fe;border:1px solid rgba(216,180,254,.25);padding:8px 10px;letter-spacing:.12em}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat-card{padding:20px 18px;min-height:130px}.stat-card small{color:var(--muted);font-size:9px;letter-spacing:.16em;text-transform:uppercase}.stat-card strong{display:block;font:800 38px 'Barlow Condensed',sans-serif;margin:13px 0 2px}.stat-card em{font-style:normal;color:var(--pink);font-size:9px;letter-spacing:.1em}
+    .loadout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.loadout{padding:22px;min-height:175px}.loadout .symbol{font:800 30px 'Barlow Condensed',sans-serif;color:var(--pink);text-shadow:0 0 20px rgba(232,121,249,.35)}.loadout h3{font:800 22px 'Barlow Condensed',sans-serif;margin:14px 0 6px;text-transform:uppercase}.loadout p{font-size:10px;color:var(--muted);line-height:1.7;margin:0}
+    .activity{display:grid;grid-template-columns:1fr 1fr;gap:18px}.activity-panel{padding:24px}.activity-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(190,140,255,.10);font-size:11px}.activity-row:last-child{border:0}.activity-row span:first-child{color:#d8cde5}.activity-row span:last-child{color:var(--muted);font-size:10px}
+    .footer{padding:28px 0 42px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;color:#71677e;font-size:9px;letter-spacing:.15em;text-transform:uppercase}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(4,3,8,.78);backdrop-filter:blur(10px);z-index:30;display:none;place-items:center;padding:20px}.modal-backdrop.open{display:grid}.modal{width:min(500px,100%);padding:28px;background:#120d1d;border:1px solid rgba(216,180,254,.35);box-shadow:0 0 70px rgba(124,58,237,.2)}.modal h2{font:800 34px 'Barlow Condensed',sans-serif;margin:0 0 20px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:9px;letter-spacing:.15em;color:#c4b5d8;text-transform:uppercase}.field input,.field select{width:100%;padding:12px;background:#09070f;border:1px solid var(--line);color:white;outline:none}.field input:focus,.field select:focus{border-color:var(--violet)}.modal-actions{display:flex;justify-content:end;gap:10px;margin-top:24px}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;z-index:50;background:#1b1028;border:1px solid rgba(216,180,254,.35);padding:12px 18px;font-size:11px;color:#f5f0ff;transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @keyframes spin{to{transform:rotateX(68deg) rotateZ(336deg)}}@keyframes pulse{50%{transform:scale(1.09);opacity:.7}}@keyframes scan{0%{top:10%}100%{top:92%}}
+    @media(max-width:800px){.nav{display:none}.hero{grid-template-columns:1fr;padding:65px 0 25px;min-height:0}.hero-art{height:330px;grid-row:1}.hero-copy{padding:10px 0 45px}.core{transform:scale(.78)}.ring{transform:scale(.78) rotateX(68deg) rotateZ(-24deg)}.ring.r2{transform:scale(.78) rotateX(68deg) rotateZ(48deg)}.profile-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}.loadout-grid{grid-template-columns:1fr}.activity{grid-template-columns:1fr}.section{padding:55px 0}.section-head{align-items:start;flex-direction:column}.topbar{height:68px}.online{display:none}}
+    @media(max-width:420px){.wrap{width:calc(100% - 28px)}.edit-btn{padding:9px 10px;font-size:9px}.brand{font-size:23px}h1{font-size:88px}.hero-art{height:290px}.stats-grid{gap:8px}.stat-card{padding:16px 13px}.stat-card strong{font-size:32px}.player-bottom{gap:20px}.footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
+    /* MUFASA visual refresh */
+    .hero{min-height:650px;grid-template-columns:.9fr 1.1fr;padding-top:48px}
+    .hero-copy{padding-left:10px}
+    .hero-art{height:560px;overflow:visible;isolation:isolate}
+    .hero-art:before{content:"";position:absolute;inset:8% 0 0 8%;background:radial-gradient(ellipse,rgba(168,85,247,.34),transparent 65%);filter:blur(22px);z-index:-2}
+    .hero-art .character{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 20px 42px rgba(168,85,247,.3));animation:characterFloat 6s ease-in-out infinite;mask-image:linear-gradient(to bottom,#000 0%,#000 78%,transparent 100%)}
+    .hero-art .ring{z-index:-1;right:7%;top:10%;width:390px;height:390px}
+    .hero-art .ring.r2{right:17%;top:20%}
+    .art-label{right:0;bottom:18px;padding:12px 15px;border:1px solid rgba(216,180,254,.25);background:rgba(9,7,15,.72);backdrop-filter:blur(12px)}
+    .hero-badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(216,180,254,.28);background:rgba(168,85,247,.08);padding:9px 12px;margin-top:22px;color:#e9d5ff;font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+    .hero-badge i{width:7px;height:7px;border-radius:50%;background:#a3e635;box-shadow:0 0 12px #a3e635}
+    .hero-copy .eyebrow{font-size:9px}
+    h1{font-size:clamp(82px,11vw,142px);letter-spacing:-.045em}
+    .panel,.stat-card,.loadout{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .panel:hover,.stat-card:hover,.loadout:hover{transform:translateY(-4px);border-color:rgba(216,180,254,.42);box-shadow:0 14px 42px rgba(88,28,135,.14)}
+    .stat-card{background:linear-gradient(145deg,rgba(27,17,43,.96),rgba(12,9,19,.96))}
+    .stat-card strong{letter-spacing:.015em}
+    .mastery-ribbon{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;margin:18px 0 0;border:1px solid rgba(216,180,254,.28);background:linear-gradient(100deg,rgba(124,58,237,.17),rgba(17,13,27,.92));position:relative;overflow:hidden}
+    .mastery-ribbon:after{content:"OCTANE";position:absolute;right:18px;top:50%;transform:translateY(-50%);font:900 52px 'Barlow Condensed';letter-spacing:.08em;color:rgba(216,180,254,.055);pointer-events:none}
+    .mastery-ribbon strong{font:800 24px 'Barlow Condensed';letter-spacing:.05em}
+    .mastery-ribbon small{display:block;color:var(--muted);font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+    .mastery-score{text-align:right;color:#f0abfc;font:900 30px 'Barlow Condensed';white-space:nowrap}
+    .section-title{letter-spacing:.035em}
+    .kicker{letter-spacing:.26em}
+    .footer{padding-top:28px;padding-bottom:34px}
+    @keyframes characterFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:32px;gap:0}.hero-art{height:360px;grid-row:1}.hero-copy{padding:0 0 45px}.hero-art .ring{width:270px;height:270px;right:8%}.hero-art .ring.r2{width:220px;height:220px;right:20%}.mastery-ribbon:after{font-size:34px}}
+    @media(max-width:420px){.hero-art{height:300px}.hero-art .ring{width:220px;height:220px}.hero-art .ring.r2{width:175px;height:175px}.mastery-ribbon{padding:15px;align-items:flex-start;flex-direction:column}.mastery-score{text-align:left}}
+
+    .live-panel{padding:24px 26px}.live-top,.live-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.live-name{font:800 27px 'Barlow Condensed',sans-serif;margin-top:8px}.live-name span{font:500 11px Manrope,sans-serif;color:var(--muted)}.live-pill{font-size:9px;letter-spacing:.13em;border:1px solid var(--line);padding:9px 12px;color:#d8b4fe}.live-pill i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f59e0b;margin-right:7px}.live-pill.connected i{background:#a3e635;box-shadow:0 0 10px #a3e635}.live-message{font-size:11px;color:#bdb1cb;line-height:1.8;margin:20px 0}.live-bottom{font-size:9px;color:var(--muted)}.live-attribution{font-size:9px;color:var(--muted);margin-top:16px}.live-attribution a{color:var(--pink);text-decoration:underline}
+\n  </style>
+</head>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="#home">MU<span style="color:#a855f7">F</span>ASA<span style="color:#a855f7">.</span></a>
+    <nav class="nav"><a href="#profile">Profile</a><a href="#stats">Stats</a><a href="#octane">Octane</a><a href="#loadout">Loadout</a><a href="#activity">Activity</a></nav>
+    <div class="top-right"><span class="online"><i class="dot"></i>PLAYER ONLINE</span><button class="edit-btn" id="openEditor">Edit profile ↗</button></div>
+  </header>
+
+  <main id="home">
+    <section class="hero wrap">
+      <div class="hero-grid"></div><div class="scanline"></div>
+      <div class="hero-copy">
+        <div class="eyebrow">Independent player profile / 2026</div>
+        <h1><span id="heroFirst">MUFA</span><span id="heroLast">SA</span></h1>
+        <p class="subtitle" id="heroTagline">Movement. Precision. Instinct.<br>Built for the next drop.</p><div class="hero-badge"><i></i> STEAM / ALEXMUFASA / PC</div>
+        <div class="hero-actions"><a class="primary-btn" href="#profile">Explore profile&nbsp; ↘</a><a class="outline-btn" href="#stats">Player data&nbsp; +</a></div>
+      </div>
+      <div class="hero-art" aria-label="Octane-inspired cyberpunk character artwork">
+        <div class="orb"></div><div class="ring"></div><div class="ring r2"></div>
+        <img class="character" src="octane-hero.webp" alt="Cyberpunk Octane-inspired masked speedster artwork">
+        <div class="art-label"><strong>OCTANE MAIN</strong>STIM // MOVE // DOMINATE</div>
+      </div>
+    </section>
+
+    <section class="section" id="profile"><div class="wrap">
+      <div class="section-head"><div><div class="kicker">01 / Identity</div><h2 class="section-title">Player profile</h2></div><p class="section-note">A personal hub for competitive identity, current games and the details that define the player.</p></div>
+      <div class="profile-grid">
+        <article class="panel player-card"><div class="player-top"><div><div class="player-tag">PLAYER // 001</div><div class="player-name" id="profileName">MUFASA</div><div class="player-role" id="profileRole">Competitive player · Movement main</div></div><div class="rank-chip" id="rankChip">RANK / TBD</div></div><div class="player-bottom"><div class="mini-stat"><small>Main game</small><strong id="mainGame">APEX LEGENDS</strong></div><div class="mini-stat"><small>Main legend</small><strong id="mainLegend">OCTANE</strong></div><div class="mini-stat"><small>Platform</small><strong id="platform">PC</strong></div></div></article>
+        <article class="panel main-game"><div><div class="game-logo">APEX<span> //</span><br>LEGENDS</div><div class="game-meta">Primary battlefield / Current focus</div></div><div class="game-bottom"><div class="legend" id="legendFeature">OCTANE<small>THE HIGH-SPEED DAREDEVIL</small></div><div class="status">MAIN GAME</div></div></article>
+      </div>
+    </div></section>
+
+    <section class="section" id="live"><div class="wrap">
+      <div class="section-head"><div><div class="kicker">LIVE LINK / APEX API</div><h2 class="section-title">Live connection</h2></div><p class="section-note">Secure server-side connection. The API key is never exposed to visitors.</p></div>
+      <article class="panel activity-panel live-panel">
+        <div class="live-top"><div><div class="kicker">PLAYER LOOKUP</div><div class="live-name">Alexmufasa <span>· PC / Steam</span></div></div><span class="live-pill" id="liveState"><i></i> NOT CONNECTED</span></div>
+        <p class="live-message" id="liveMessage">Live stats are ready to connect. The profile currently displays your verified screenshot snapshot.</p>
+        <div class="live-bottom"><span id="liveUpdated">Snapshot: supplied screenshots</span><button class="outline-btn" id="refreshLive" type="button">CHECK CONNECTION ↗</button></div>
+        <div class="live-attribution">Data provided by <a href="https://apexlegendsstatus.com/" target="_blank" rel="noopener">Apex Legends Status</a></div>
+      </article>
+    </div></section>
+
+    <section class="section" id="stats"><div class="wrap">
+      <div class="section-head"><div><div class="kicker">02 / Performance</div><h2 class="section-title">Player data</h2></div><p class="section-note">Snapshot from your Apex Legends Status profile screenshots. Values are not live-synced.</p></div>
+      <div class="stats-grid">
+        <article class="panel stat-card"><small>Career kills</small><strong>11,810</strong><em>ALL LEGENDS</em></article>
+        <article class="panel stat-card"><small>Career wins</small><strong>482</strong><em>ALL LEGENDS</em></article>
+        <article class="panel stat-card"><small>Career revives</small><strong>2,483</strong><em>ALL LEGENDS</em></article>
+        <article class="panel stat-card"><small>Current BR RP</small><strong>4,799</strong><em>TOP 62.8% · SCREENSHOT SNAPSHOT</em></article>
+      </div>
+      <div id="octane" class="section-head" style="margin-top:34px"><div><div class="kicker">OCTANE / LEGEND MASTERY</div><h3 class="section-title" style="font-size:38px">The stim is the way</h3></div><p class="section-note">Tracked Octane Battle Royale statistics from your profile snapshot.</p></div>
+      <div class="mastery-ribbon"><div><small>Octane signature statistic</small><strong>PASSIVE HEALTH REGENERATED</strong><div style="font-size:10px;color:#b9abc9;margin-top:4px">4,964,567 · Apex Legends Status snapshot</div></div><div class="mastery-score">TOP 0.4%</div></div>
+      <div class="stats-grid">
+        <article class="panel stat-card"><small>Octane BR kills</small><strong>7,779</strong><em>TOP 0.9% TRACKED</em></article>
+        <article class="panel stat-card"><small>Octane BR damage</small><strong>2.93M</strong><em>2,926,567 · TOP 0.8%</em></article>
+        <article class="panel stat-card"><small>Passive health regenerated</small><strong>4.96M</strong><em>4,964,567 · TOP 0.4%</em></article>
+        <article class="panel stat-card"><small>Stim distance</small><strong>2.16M</strong><em>2,165,276 · TOP 1%</em></article>
+      </div>
+      <div class="stats-grid" style="margin-top:12px">
+        <article class="panel stat-card"><small>Octane BR wins</small><strong>130</strong><em>LEGEND TRACKER</em></article>
+        <article class="panel stat-card"><small>R-301 kills</small><strong>1,717</strong><em>WEAPON TRACKER</em></article>
+        <article class="panel stat-card"><small>R-99 kills</small><strong>784</strong><em>WEAPON TRACKER</em></article>
+        <article class="panel stat-card"><small>Devotion kills</small><strong>608</strong><em>WEAPON TRACKER</em></article>
+      </div>
+      <p class="section-note" style="max-width:none;margin-top:16px">Profile: Alexmufasa · PC · Apex Legends Status. Percentiles refer to the tracker’s tracked-player data, not an official global skill ranking. Snapshot based on screenshots supplied by the player.</p>
+    </div></section>
+
+    <section class="section" id="loadout"><div class="wrap">
+      <div class="section-head"><div><div class="kicker">03 / Loadout</div><h2 class="section-title">The setup</h2></div><p class="section-note">A snapshot of the hardware and playstyle behind the profile.</p></div>
+      <div class="loadout-grid">
+        <article class="panel loadout"><div class="symbol">01</div><h3>Movement first</h3><p>Fast rotations, aggressive entries and constant repositioning. Keep the momentum.</p></article>
+        <article class="panel loadout"><div class="symbol">02</div><h3>Precision aim</h3><p>Competitive focus with a deliberate setup. Personal settings can be added here.</p></article>
+        <article class="panel loadout"><div class="symbol">03</div><h3>PC battlestation</h3><p id="hardwareText">High-performance PC · 1440p gaming · High refresh rate</p></article>
+      </div>
+    </div></section>
+
+    <section class="section" id="activity"><div class="wrap">
+      <div class="section-head"><div><div class="kicker">04 / Beyond the arena</div><h2 class="section-title">Current rotation</h2></div><p class="section-note">Games and interests that make up the wider gaming identity.</p></div>
+      <div class="activity">
+        <article class="panel activity-panel"><div class="kicker">Games / Rotation</div><div class="activity-row"><span>Apex Legends</span><span>PRIMARY</span></div><div class="activity-row"><span>Arma Reforger</span><span>TACTICAL</span></div><div class="activity-row"><span>ARC Raiders</span><span>EXTRACTION</span></div><div class="activity-row"><span>Marvel Rivals</span><span>HERO SHOOTER</span></div></article>
+        <article class="panel activity-panel"><div class="kicker">Player philosophy</div><div style="font:800 28px/1.05 'Barlow Condensed';margin:17px 0;color:#eadcff">“STAY SHARP.<br>MOVE DIFFERENT.”</div><p style="font-size:11px;line-height:1.8;color:var(--muted);max-width:360px">A profile built around improvement, mechanical skill and the pursuit of better plays. No noise. Just gameplay.</p></article>
+      </div>
+    </div></section>
+  </main>
+
+  <footer class="footer wrap"><span>© <span id="year"></span> MUFASA / PLAYER PROFILE</span><span>Designed in the dark / Powered by focus</span><a href="#home">Back to top ↑</a></footer>
+
+  <div class="modal-backdrop" id="editor" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+    <form class="modal" id="profileForm"><h2 id="editorTitle">EDIT PLAYER DATA</h2>
+      <div class="field"><label for="nameInput">Player nickname</label><input id="nameInput" maxlength="18" value="MUFASA"></div>
+      <div class="field"><label for="taglineInput">Tagline</label><input id="taglineInput" maxlength="80" value="Movement. Precision. Instinct."></div>
+      <div class="field"><label for="rankInput">Current rank</label><input id="rankInput" maxlength="16" placeholder="e.g. Diamond"></div>
+      <div class="field"><label for="peakInput">Peak rank</label><input id="peakInput" maxlength="16" placeholder="e.g. Master"></div>
+      <div class="field"><label for="kdInput">K/D ratio</label><input id="kdInput" maxlength="8" placeholder="e.g. 2.15"></div>
+      <div class="field"><label for="hoursInput">Hours played</label><input id="hoursInput" maxlength="10" placeholder="e.g. 1200"></div>
+      <div class="field"><label for="platformInput">Platform</label><select id="platformInput"><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Other</option></select></div>
+      <div class="modal-actions"><button type="button" class="outline-btn" id="cancelEditor">Cancel</button><button type="submit" class="primary-btn">Save profile</button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast" role="status">Profile updated</div>
+  <script>
+    const defaults={name:"MUFASA",tagline:"Movement. Precision. Instinct.",rank:"",peak:"",kd:"",hours:"",platform:"PC"};
+    let profile={...defaults};
+    try{profile={...defaults,...JSON.parse(localStorage.getItem("mufasaProfile")||"{}")}}catch(e){}
+    const $=id=>document.getElementById(id);
+    function safe(v,fallback){return (v||"").trim()||fallback}
+    function render(){
+      const name=safe(profile.name,"MUFASA").toUpperCase();
+      $("profileName").textContent=name;$("heroFirst").textContent=name.length>5?name.slice(0,Math.ceil(name.length/2)):name.slice(0,Math.ceil(name.length/2));
+      $("heroLast").textContent=name.slice(Math.ceil(name.length/2));
+      $("heroTagline").innerHTML=safe(profile.tagline,defaults.tagline).replace(/[<>&"]/g,"").replace(/\. /g,".<br>");
+      $("rankChip").textContent="RANK / "+(safe(profile.rank,"TBD").toUpperCase());
+      $("statRank").textContent=safe(profile.rank,"—").toUpperCase();
+      $("statPeak").textContent=safe(profile.peak,"—").toUpperCase();
+      $("statKd").textContent=safe(profile.kd,"—");
+      $("statHours").textContent=safe(profile.hours,"—");
+      $("platform").textContent=safe(profile.platform,"PC").toUpperCase();
+    }
+    function openEditor(){
+      $("nameInput").value=profile.name;$("taglineInput").value=profile.tagline;$("rankInput").value=profile.rank;$("peakInput").value=profile.peak;$("kdInput").value=profile.kd;$("hoursInput").value=profile.hours;$("platformInput").value=profile.platform;
+      $("editor").classList.add("open");$("nameInput").focus();
+    }
+    function closeEditor(){$("editor").classList.remove("open")}
+    $("openEditor").addEventListener("click",openEditor);$("cancelEditor").addEventListener("click",closeEditor);
+    $("editor").addEventListener("click",e=>{if(e.target===$("editor"))closeEditor()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")closeEditor()});
+    $("profileForm").addEventListener("submit",e=>{
+      e.preventDefault();
+      profile={name:$("nameInput").value,tagline:$("taglineInput").value,rank:$("rankInput").value,peak:$("peakInput").value,kd:$("kdInput").value,hours:$("hoursInput").value,platform:$("platformInput").value};
+      try{localStorage.setItem("mufasaProfile",JSON.stringify(profile))}catch(e){}
+      render();closeEditor();$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200);
+    });
+
+    const liveState=$("liveState"), liveMessage=$("liveMessage"), liveUpdated=$("liveUpdated"), refreshLive=$("refreshLive");
+    async function checkLive(){
+      refreshLive.disabled=true;refreshLive.textContent="CHECKING...";
+      liveState.classList.remove("connected");liveState.innerHTML="<i></i> CHECKING";
+      try{
+        const response=await fetch("/api/apex",{headers:{"Accept":"application/json"},cache:"no-store"});
+        const result=await response.json();
+        if(!response.ok || !result.ok){
+          const code=result.code||"CONNECTION_ERROR";
+          liveState.innerHTML="<i></i> "+(code==="API_KEY_MISSING"?"SETUP REQUIRED":"UNAVAILABLE");
+          liveMessage.textContent=code==="API_KEY_MISSING"?"The server endpoint is installed, but the APEX_API_KEY secret has not been added in Cloudflare Pages yet.":"The API did not return live data (HTTP "+response.status+"). Check the API key, profile visibility and provider limits.";
+          liveUpdated.textContent="Last check: "+new Date().toLocaleString();
+        }else{
+          liveState.classList.add("connected");liveState.innerHTML="<i></i> API CONNECTED";
+          liveMessage.textContent="Apex Legends Status responded successfully. The raw API payload is received securely; tracker fields will be mapped after validating the live response format.";
+          liveUpdated.textContent="API response: "+new Date(result.fetchedAt).toLocaleString();
+        }
+      }catch(error){
+        liveState.innerHTML="<i></i> NOT DEPLOYED";
+        liveMessage.textContent="The live endpoint is not available on this local preview. Deploy the project to Cloudflare Pages to enable the secure API connection.";
+      }finally{refreshLive.disabled=false;refreshLive.textContent="CHECK CONNECTION ↗"}
+    }
+    refreshLive?.addEventListener("click",checkLive);
+
+    $("year").textContent=new Date().getFullYear();render();
+  </script>
+</body>
+</html>
